@@ -223,5 +223,9 @@ int main(void)
 
     lcParcourir(maListeOrdonnee);
 
+    lcSupprimerListe(maListeOrdonnee);
+
+    lcParcourir(maListeOrdonnee);
+
     return 0;
 }
