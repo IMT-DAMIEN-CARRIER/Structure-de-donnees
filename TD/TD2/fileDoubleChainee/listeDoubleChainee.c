@@ -10,9 +10,11 @@
  * Creer la file
  * @return file*
  */
-file *creerFile()
+file* creerFile()
 {
     file* f = (file *) malloc(sizeof(file));
+    f->sentinelle = (noeud *) malloc(sizeof(noeud));
+
     f->sentinelle->suivant = f->sentinelle;
     f->sentinelle->precedent = f->sentinelle;
 
@@ -80,9 +82,6 @@ void afficherFile(file* f)
 int main(void)
 {
     file* f = creerFile();
-    printf("ici");
-    exit(0);
-
 
     afficherFile(f);
 

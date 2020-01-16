@@ -8,16 +8,16 @@
 #include <stdbool.h>
 
 typedef struct noeud {
-    void *cle;
-    struct noeud *suivant;
-    struct noeud *precedent;
+    void* cle;
+    struct noeud* suivant;
+    struct noeud* precedent;
 } noeud;
 
 typedef struct file {
-    noeud *sentinelle;
+    noeud* sentinelle;
 } file;
 
-file *creerFile();
+file* creerFile();
 bool estVide(file* f);
 void enfiler(file* f, void *cle);
 void defiler(file* f);
