@@ -31,18 +31,16 @@ bool estVide(file *f)
 /**
  * enfiler une valeur à la fin.
  */
-void  enfiler(file *f, void* cle)
+void enfiler(file *f, void* cle)
 {
     noeud *newNoeud = (noeud *) malloc(sizeof(noeud));
     newNoeud->cle = cle;
 
-    noeud* lastNoeud = f->sentinelle->precedent;
-
-    newNoeud->precedent = lastNoeud;
-    lastNoeud->suivant = newNoeud;
-
     newNoeud->suivant = f->sentinelle;
-    f->sentinelle->precedent = newNoeud;
+    newNoeud->precedent = f->sentinelle->precedent;
+
+    newNoeud->suivant->precedent = newNoeud;
+    newNoeud->precedent->suivant = newNoeud;
 }
 
 /**
@@ -88,8 +86,8 @@ int main(void)
 
     afficherFile(f);
 
-    unsigned char c = 'e';
-    enfiler(f, &c);
+    unsigned char e = 'e';
+    enfiler(f, &e);
     afficherFile(f);
 
     unsigned char *caracter = (unsigned char *) malloc(sizeof(*caracter));
@@ -98,16 +96,16 @@ int main(void)
     enfiler(f, caracter);
     afficherFile(f);
 
-    *caracter = 'i';
-    enfiler(f, caracter);
+    unsigned char i = 'i';
+    enfiler(f, &i);
     afficherFile(f);
 
-    *caracter = 'l';
-    enfiler(f, caracter);
+    unsigned char l = 'l';
+    enfiler(f, &l);
     afficherFile(f);
 
-    *caracter = 'e';
-    enfiler(f, caracter);
+    unsigned char ee = 'e';
+    enfiler(f, &ee);
     afficherFile(f);
 
     defiler(f);
