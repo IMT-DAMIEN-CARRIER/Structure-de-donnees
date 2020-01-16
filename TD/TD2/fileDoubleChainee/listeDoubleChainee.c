@@ -36,21 +36,13 @@ void  enfiler(file *f, void* cle)
     noeud *newNoeud = (noeud *) malloc(sizeof(noeud));
     newNoeud->cle = cle;
 
-    if (!estVide(f)) {
-        noeud* lastNoeud = f->sentinelle->precedent;
+    noeud* lastNoeud = f->sentinelle->precedent;
 
-        newNoeud->precedent = lastNoeud;
-        newNoeud->suivant = f->sentinelle;
+    newNoeud->precedent = lastNoeud;
+    lastNoeud->suivant = newNoeud;
 
-        lastNoeud->suivant = newNoeud;
-        f->sentinelle->precedent = newNoeud;
-    } else {
-        newNoeud->precedent = f->sentinelle;
-        newNoeud->suivant = f->sentinelle;
-
-        f->sentinelle->suivant = newNoeud;
-        f->sentinelle->precedent = newNoeud;
-    }
+    newNoeud->suivant = f->sentinelle;
+    f->sentinelle->precedent = newNoeud;
 }
 
 /**
