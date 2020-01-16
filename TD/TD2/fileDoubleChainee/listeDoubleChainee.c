@@ -14,7 +14,6 @@ file* creerFile()
 {
     file* f = (file *) malloc(sizeof(file));
     f->sentinelle = (noeud *) malloc(sizeof(noeud));
-
     f->sentinelle->suivant = f->sentinelle;
     f->sentinelle->precedent = f->sentinelle;
 
@@ -26,7 +25,7 @@ file* creerFile()
  */
 bool estVide(file *f)
 {
-    return (f->sentinelle == f->sentinelle->precedent && f->sentinelle == f->sentinelle->suivant);
+    return (f->sentinelle == f->sentinelle->precedent);
 }
 
 /**
@@ -34,13 +33,16 @@ bool estVide(file *f)
  */
 void  enfiler(file *f, void* cle)
 {
-    noeud* noeudPrecedent = f->sentinelle->precedent;
     noeud* newNoeud = (noeud *) malloc (sizeof(noeud));
+    noeud* noeudPrecedent = f->sentinelle->precedent;
     
     newNoeud->cle = cle;
+
+    newNoeud->suivant = f->sentinelle;
     newNoeud->precedent = noeudPrecedent;
-    newNoeud->suivant->suivant = f->sentinelle;
+
     f->sentinelle->precedent = newNoeud;
+
     noeudPrecedent->suivant = newNoeud;
 }
 
@@ -74,8 +76,10 @@ void afficherFile(file* f)
 
             noeudCourant = noeudCourant->suivant;
         }
+
+        printf("\n");
     } else {
-        printf("La liste est vide.");
+        printf("La liste est vide.\n");
     }
 }
 
@@ -86,11 +90,11 @@ int main(void)
     afficherFile(f);
 
     unsigned char c = 'e';
-
     enfiler(f, &c);
     afficherFile(f);
 
     unsigned char *caracter = (unsigned char *) malloc(sizeof(*caracter));
+
     *caracter = 'f';
     enfiler(f, caracter);
     afficherFile(f);
