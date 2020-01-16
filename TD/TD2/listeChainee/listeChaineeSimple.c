@@ -207,6 +207,18 @@ bool lcSupprimerCle(liste *l, unsigned char cle)
     return result;
 }
 
+liste *lcFusionner(liste *liste1, liste *liste2)
+{
+    noeud *noeudCourant = liste2->debut;
+
+    while (liste2->fin != noeudCourant) {
+        lcInsererOrdonne(liste1, noeudCourant->cle);
+        noeudCourant = noeudCourant->suivant;
+    }
+
+    return liste1;
+}
+
 /**
  * Main.
  *

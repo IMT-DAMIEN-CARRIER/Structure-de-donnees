@@ -12,7 +12,7 @@ typedef struct noeud {
     struct noeud *suivant;
 } noeud;
 
-typedef struct liste {
+typedef struct file {
     noeud *debut;
     noeud *fin;
 } liste;
@@ -26,5 +26,6 @@ void lcParcourir(liste *l);
 bool lcContient(liste *l, unsigned char cle);
 noeud *lcInsererOrdonne(liste *l, unsigned char cle);
 bool lcSupprimerCle(liste *l, unsigned char cle);
+liste *lcFusionner(liste *liste1, liste *liste2);
 
 #endif //STRUCTURE_DE_DONNEES_LISTECHAINEESIMPLE_H
