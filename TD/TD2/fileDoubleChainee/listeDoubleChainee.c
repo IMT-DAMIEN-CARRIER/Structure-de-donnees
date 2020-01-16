@@ -80,6 +80,10 @@ void afficherFile(file* f)
 int main(void)
 {
     file* f = creerFile();
+    printf("ici");
+    exit(0);
+
+
     afficherFile(f);
 
     unsigned char c = 'e';
