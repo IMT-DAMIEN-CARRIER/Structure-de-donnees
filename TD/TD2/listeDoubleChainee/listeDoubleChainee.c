@@ -30,7 +30,7 @@ bool estVide(file *f)
 /**
  * enfiler une valeur à la fin.
  */
-void enfiler(file *f, void *cle)
+file*  enfiler(file *f, void *cle)
 {
     noeud* noeudPrecedent = f->sentinelle->precedent;
     noeud* newNoeud = (noeud *) malloc (sizeof(noeud));
@@ -40,23 +40,31 @@ void enfiler(file *f, void *cle)
     newNoeud->suivant->suivant = f->sentinelle;
     f->sentinelle->precedent = newNoeud;
     noeudPrecedent->suivant = newNoeud;
+
+    return f;
 }
 
 /**
  * Défile la première valeur.
  */
-void defiler(file *f)
+file* defiler(file *f)
 {
-    noeud* noeudASuppr = f->sentinelle->suivant;
-    noeud* noeudASupprSuivant = noeudASuppr->suivant;
+    if (!estVide(f)) {
+        noeud *noeudASuppr = f->sentinelle->suivant;
+        noeud *noeudASupprSuivant = noeudASuppr->suivant;
 
-    f->sentinelle->suivant = noeudASupprSuivant;
-    noeudASupprSuivant->precedent = f->sentinelle;
+        f->sentinelle->suivant = noeudASupprSuivant;
+        noeudASupprSuivant->precedent = f->sentinelle;
 
-    free(noeudASuppr);
+        free(noeudASuppr);
+    }
+
+    return f;
 }
 
 int main(void)
 {
+    liste* liste = creerFile();
+
     return 0;
 }
