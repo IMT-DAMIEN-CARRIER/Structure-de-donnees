@@ -12,11 +12,11 @@
  */
 file *creerFile()
 {
-    file* file = (file *) malloc(sizeof(file));
-    file->sentinelle->suivant = file->sentinelle;
-    file->sentinelle->precedent = file->sentinelle;
+    file* f = (file *) malloc(sizeof(file));
+    f->sentinelle->suivant = f->sentinelle;
+    f->sentinelle->precedent = f->sentinelle;
 
-    return file;
+    return f;
 }
 
 /**
@@ -30,7 +30,7 @@ bool estVide(file *f)
 /**
  * enfiler une valeur à la fin.
  */
-file*  enfiler(file *f, void *cle)
+void  enfiler(file *f, void* cle)
 {
     noeud* noeudPrecedent = f->sentinelle->precedent;
     noeud* newNoeud = (noeud *) malloc (sizeof(noeud));
@@ -40,14 +40,12 @@ file*  enfiler(file *f, void *cle)
     newNoeud->suivant->suivant = f->sentinelle;
     f->sentinelle->precedent = newNoeud;
     noeudPrecedent->suivant = newNoeud;
-
-    return f;
 }
 
 /**
  * Défile la première valeur.
  */
-file* defiler(file *f)
+void defiler(file *f)
 {
     if (!estVide(f)) {
         noeud *noeudASuppr = f->sentinelle->suivant;
@@ -58,13 +56,56 @@ file* defiler(file *f)
 
         free(noeudASuppr);
     }
+}
 
-    return f;
+void afficherFile(file* f)
+{
+    if (!estVide(f)) {
+        noeud* noeudCourant = f->sentinelle->suivant;
+
+        while (f->sentinelle != noeudCourant) {
+            printf("%c", *((unsigned char *) noeudCourant->cle));
+
+            if (f->sentinelle != noeudCourant->suivant) {
+                printf(" -> ");
+            }
+
+            noeudCourant = noeudCourant->suivant;
+        }
+    } else {
+        printf("La liste est vide.");
+    }
 }
 
 int main(void)
 {
-    liste* liste = creerFile();
+    file* f = creerFile();
+    afficherFile(f);
+
+    unsigned char c = 'e';
+
+    enfiler(f, &c);
+    afficherFile(f);
+
+    unsigned char *caracter = (unsigned char *) malloc(sizeof(*caracter));
+    *caracter = 'f';
+    enfiler(f, caracter);
+    afficherFile(f);
+
+    *caracter = 'i';
+    enfiler(f, caracter);
+    afficherFile(f);
+
+    *caracter = 'l';
+    enfiler(f, caracter);
+    afficherFile(f);
+
+    *caracter = 'e';
+    enfiler(f, caracter);
+    afficherFile(f);
+
+    defiler(f);
+    afficherFile(f);
 
     return 0;
 }

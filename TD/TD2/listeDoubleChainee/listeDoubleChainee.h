@@ -18,8 +18,9 @@ typedef struct file {
 } file;
 
 file *creerFile();
-bool estVide(file *l);
-file* enfiler(file *l, void *cle);
-file* defiler(file *l);
+bool estVide(file *f);
+void enfiler(file *f, void *cle);
+void defiler(file *f);
+void afficherFile(file* f);
 
 #endif //STRUCTURE_DE_DONNEES_LISTEDOUBLECHAINEE_H
