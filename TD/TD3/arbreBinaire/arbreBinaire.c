@@ -24,10 +24,34 @@ arbre* creerArbre()
 
 bool estVide(arbre* tree)
 {
-    return tree->
+    return tree->debut->droite == tree->z;
 }
 
-void insererArbre(void* cle)
+void insererArbre(arbre* tree, void* cle)
+{
+    noeud* parent = tree->debut;
+    noeud* noeud = parent->droite;
+
+    while (noeud != tree->z) {
+        parent = noeud;
+
+        noeud = (cle < noeud->cle) ? noeud->gauche : noeud->droite;
+    }
+
+    noeud = malloc(sizeof(noeud));
+
+    noeud->cle = cle;
+    noeud->droite = tree->z;
+    noeud->gauche = tree->z;
+
+    if (cle < parent->cle) {
+        parent->gauche = noeud;
+    } else {
+        parent->droite = noeud;
+    }
+}
+
+noeud* rechercher(arbre* tree, void* cle)
 {
 
 }

@@ -20,6 +20,7 @@ typedef struct arbre {
 
 arbre* creerArbre();
 bool estVide(arbre* tree);
-void insererArbre(void* cle);
+void insererArbre(arbre* tree, void* cle);
+noeud* rechercher(arbre* tree, void* cle);
 
 #endif //STRUCTURE_DE_DONNEES_ARBREBINAIRE_H
