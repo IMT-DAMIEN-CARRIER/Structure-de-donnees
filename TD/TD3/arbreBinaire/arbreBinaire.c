@@ -28,6 +28,7 @@ arbre* creerArbre()
 }
 
 /**
+ * Renvoie si l'arbre est vide ou non.
  *
  * @param tree
  *
@@ -39,6 +40,7 @@ bool estVide(arbre* tree)
 }
 
 /**
+ * Inserer un nouveau noeud avec la valeur clé dans l'arbre.
  *
  * @param tree
  * @param cle
@@ -68,6 +70,7 @@ void insererArbre(arbre* tree, void* cle)
 }
 
 /**
+ * Recherche le noeud qui contient la valeur clé.
  *
  * @param tree
  * @param cle
