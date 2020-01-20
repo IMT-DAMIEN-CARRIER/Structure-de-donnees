@@ -30,30 +30,37 @@ bool estVide(arbre* tree)
 void insererArbre(arbre* tree, void* cle)
 {
     noeud* parent = tree->debut;
-    noeud* noeud = parent->droite;
+    noeud* node = parent->droite;
 
-    while (noeud != tree->z) {
-        parent = noeud;
+    while (node != tree->z) {
+        parent = node;
 
-        noeud = (cle < noeud->cle) ? noeud->gauche : noeud->droite;
+        node = (cle < node->cle) ? node->gauche : node->droite;
     }
 
-    noeud = malloc(sizeof(noeud));
+    node = malloc(sizeof(noeud));
 
-    noeud->cle = cle;
-    noeud->droite = tree->z;
-    noeud->gauche = tree->z;
+    node->cle = cle;
+    node->droite = tree->z;
+    node->gauche = tree->z;
 
     if (cle < parent->cle) {
-        parent->gauche = noeud;
+        parent->gauche = node;
     } else {
-        parent->droite = noeud;
+        parent->droite = node;
     }
 }
 
 noeud* rechercher(arbre* tree, void* cle)
 {
+    noeud *node = tree->debut;
+    tree->z->cle = cle;
 
+    while (cle != node->cle) {
+        node = (cle < node->cle) ? node->gauche : node->droite;
+    }
+
+    return node;
 }
 
 int main(void)
