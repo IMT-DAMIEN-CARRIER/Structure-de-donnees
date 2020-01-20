@@ -7,6 +7,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/**
+ * Creer un arbre binaire.
+ *
+ * @return arbre*
+ */
 arbre* creerArbre()
 {
     arbre* tree =(arbre *) malloc(sizeof(arbre));
@@ -22,11 +27,22 @@ arbre* creerArbre()
     return tree;
 }
 
+/**
+ *
+ * @param tree
+ *
+ * @return bool
+ */
 bool estVide(arbre* tree)
 {
     return tree->debut->droite == tree->z;
 }
 
+/**
+ *
+ * @param tree
+ * @param cle
+ */
 void insererArbre(arbre* tree, void* cle)
 {
     noeud* parent = tree->debut;
@@ -51,6 +67,13 @@ void insererArbre(arbre* tree, void* cle)
     }
 }
 
+/**
+ *
+ * @param tree
+ * @param cle
+ *
+ * @return noeud *
+ */
 noeud* rechercher(arbre* tree, void* cle)
 {
     noeud *node = tree->debut;
@@ -63,6 +86,10 @@ noeud* rechercher(arbre* tree, void* cle)
     return node;
 }
 
+/**
+ *
+ * @return int
+ */
 int main(void)
 {
     arbre* tree = creerArbre();
