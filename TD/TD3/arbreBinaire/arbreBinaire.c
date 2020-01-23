@@ -3,6 +3,7 @@
 //
 
 #include "arbreBinaire.h"
+#include "../../TD2/fileDoubleChainee/fileDoubleChainee.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -89,8 +90,26 @@ noeud* rechercher(arbre* tree, void* cle)
     return node;
 }
 
-void suppressionAbr(arbre* tree)
-{
+void parcoursLargeur(arbre *tree) {
+    if (!estVide(tree)) {
+        file *maFile = (file *) malloc(sizeof(file));
+        noeud *noeudCourant = tree->debut;
+
+        enfiler(maFile, noeudCourant->cle);
+
+        while (!estVide(maFile)) {
+            noeudCourant = defiler(maFile);
+            printf("%c", *((unsigned char *) noeudCourant->cle));
+
+            if (noeudCourant->gauche != tree->z) {
+                enfiler(maFile, noeudCourant->gauche);
+            }
+
+            if (noeudCourant->droite != tree->z) {
+                enfiler(maFile, noeudCourant->droite);
+            }
+        }
+    }
 }
 
 /**

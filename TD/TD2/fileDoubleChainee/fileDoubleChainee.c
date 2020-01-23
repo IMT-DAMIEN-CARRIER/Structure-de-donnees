@@ -46,8 +46,9 @@ void enfiler(file *f, void* cle)
 /**
  * Défile la première valeur.
  */
-void defiler(file *f)
-{
+void *defiler(file *f) {
+    noeud *value = (void *) malloc(sizeof(void));
+
     if (!estVide(f)) {
         noeud *noeudASuppr = f->sentinelle->suivant;
         noeud *noeudASupprSuivant = noeudASuppr->suivant;
@@ -55,8 +56,11 @@ void defiler(file *f)
         f->sentinelle->suivant = noeudASupprSuivant;
         noeudASupprSuivant->precedent = f->sentinelle;
 
+        value = noeudASuppr->cle;
         free(noeudASuppr);
     }
+
+    return value;
 }
 
 void afficherFile(file* f)

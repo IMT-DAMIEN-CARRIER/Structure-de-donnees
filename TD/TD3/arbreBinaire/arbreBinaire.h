@@ -24,6 +24,7 @@ void insererArbre(arbre* tree, void* cle);
 noeud* rechercher(arbre* tree, void* cle);
 
 /** Parcours */
+void parcoursLargeur(arbre *tree);
 
 void suppressionAbr(arbre* tree);
 
