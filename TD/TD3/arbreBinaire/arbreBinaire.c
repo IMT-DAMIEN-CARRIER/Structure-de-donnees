@@ -89,6 +89,10 @@ noeud* rechercher(arbre* tree, void* cle)
     return node;
 }
 
+void suppressionAbr(arbre* tree)
+{
+}
+
 /**
  *
  * @return int

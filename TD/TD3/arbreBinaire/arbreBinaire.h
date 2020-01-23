@@ -23,4 +23,8 @@ bool estVide(arbre* tree);
 void insererArbre(arbre* tree, void* cle);
 noeud* rechercher(arbre* tree, void* cle);
 
+/** Parcours */
+
+void suppressionAbr(arbre* tree);
+
 #endif //STRUCTURE_DE_DONNEES_ARBREBINAIRE_H
