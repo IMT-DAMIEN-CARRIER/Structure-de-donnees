@@ -15,9 +15,9 @@
  */
 arbre* creerArbre()
 {
-    arbre* tree =(arbre *) malloc(sizeof(arbre));
-    tree->z = (noeud *) malloc(sizeof(noeud));
-    tree->debut = (noeud *) malloc(sizeof(noeud));
+    arbre *tree = (arbre *) malloc(sizeof(arbre));
+    tree->z = (noeudArbre *) malloc(sizeof(noeudArbre));
+    tree->debut = (noeudArbre *) malloc(sizeof(noeudArbre));
 
     tree->z->gauche = tree->z;
     tree->z->droite = tree->z;
@@ -35,21 +35,19 @@ arbre* creerArbre()
  *
  * @return bool
  */
-bool estVide(arbre* tree)
-{
+bool estVideArbre(arbre *tree) {
     return tree->debut->droite == tree->z;
 }
 
 /**
- * Inserer un nouveau noeud avec la valeur clé dans l'arbre.
+ * Inserer un nouveau noeudArbre avec la valeur clé dans l'arbre.
  *
  * @param tree
  * @param cle
  */
-void insererArbre(arbre* tree, void* cle)
-{
-    noeud* parent = tree->debut;
-    noeud* node = parent->droite;
+void insererArbre(arbre* tree, void* cle) {
+    noeudArbre *parent = tree->debut;
+    noeudArbre *node = parent->droite;
 
     while (node != tree->z) {
         parent = node;
@@ -57,7 +55,7 @@ void insererArbre(arbre* tree, void* cle)
         node = (cle < node->cle) ? node->gauche : node->droite;
     }
 
-    node = malloc(sizeof(noeud));
+    node = malloc(sizeof(noeudArbre));
 
     node->cle = cle;
     node->droite = tree->z;
@@ -71,16 +69,15 @@ void insererArbre(arbre* tree, void* cle)
 }
 
 /**
- * Recherche le noeud qui contient la valeur clé.
+ * Recherche le noeudArbre qui contient la valeur clé.
  *
  * @param tree
  * @param cle
  *
- * @return noeud *
+ * @return noeudArbre *
  */
-noeud* rechercher(arbre* tree, void* cle)
-{
-    noeud *node = tree->debut;
+noeudArbre *rechercher(arbre *tree, void *cle) {
+    noeudArbre *node = tree->debut;
     tree->z->cle = cle;
 
     while (cle != node->cle) {
@@ -91,9 +88,9 @@ noeud* rechercher(arbre* tree, void* cle)
 }
 
 void parcoursLargeur(arbre *tree) {
-    if (!estVide(tree)) {
+    if (!estVideArbre(tree)) {
         file *maFile = (file *) malloc(sizeof(file));
-        noeud *noeudCourant = tree->debut;
+        noeudArbre *noeudCourant = tree->debut;
 
         enfiler(maFile, noeudCourant->cle);
 
@@ -112,13 +109,28 @@ void parcoursLargeur(arbre *tree) {
     }
 }
 
+void suppressionAbr(arbre *tree) {
+
+}
+
 /**
  *
  * @return int
  */
-int main(void)
-{
-    arbre* tree = creerArbre();
+int main(void) {
+    arbre *tree = creerArbre();
+
+    unsigned char e = 'e';
+    insererArbre(tree, &e);
+
+    e = 'a';
+    insererArbre(tree, &e);
+
+    printf("%c <- %c -> %c \n",
+           *((unsigned char *) tree->debut->gauche->cle),
+           *((unsigned char *) tree->debut->cle),
+           *((unsigned char *) tree->debut->droite->cle)
+    );
 
     return 0;
 }

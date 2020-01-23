@@ -7,21 +7,24 @@
 
 #include <stdbool.h>
 
-typedef struct noeud {
-    void* cle;
-    struct noeud* droite;
-    struct noeud* gauche;
-} noeud;
+typedef struct noeudArbre {
+    void *cle;
+    struct noeudArbre *droite;
+    struct noeudArbre *gauche;
+} noeudArbre;
 
 typedef struct arbre {
-    noeud* debut;
-    noeud* z;
+    noeudArbre *debut;
+    noeudArbre *z;
 } arbre;
 
-arbre* creerArbre();
-bool estVide(arbre* tree);
-void insererArbre(arbre* tree, void* cle);
-noeud* rechercher(arbre* tree, void* cle);
+arbre *creerArbre();
+
+bool estVideArbre(arbre *tree);
+
+void insererArbre(arbre *tree, void *cle);
+
+noeudArbre *rechercher(arbre *tree, void *cle);
 
 /** Parcours */
 void parcoursLargeur(arbre *tree);

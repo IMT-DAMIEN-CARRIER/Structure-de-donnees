@@ -19,8 +19,10 @@ typedef struct file {
 
 file* creerFile();
 bool estVide(file* f);
-void enfiler(file* f, void *cle);
-void defiler(file* f);
-void afficherFile(file* f);
+void enfiler(file *f, void *cle);
+
+void *defiler(file *f);
+
+void afficherFile(file *f);
 
 #endif //STRUCTURE_DE_DONNEES_FILEDOUBLECHAINEE_H
